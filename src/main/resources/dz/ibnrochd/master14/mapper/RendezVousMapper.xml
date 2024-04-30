@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "C:\Users\CBS\git\sb_002\mybatis-3-mapper .dtd" >
+<mapper namespace="dz.ibnrochd.master14.mapper.RendezVousMapper" >
+    <resultMap id="ResultMap" type="dz.ibnrochd.master14.model.RendezVous" >
+        <id column="id" property="id"  />
+        <result column="dateRdv" property="date_rdv" />
+    </resultMap>
+    
+    <select id="AfficherAllRendezVous" resultMap="ResultMap">
+        SELECT * FROM cabinet.rendez_vous
+    </select>
+    
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "C:\Users\CBS\git\sb_002\mybatis-3-mapper .dtd" >
+<mapper namespace="dz.ibnrochd.master14.mapper.LigneConsultationMapper" >
+    <resultMap id="ResultMap" type="dz.ibnrochd.master14.model.LigneConsultation" >
+        <id column="id" property="id"  />
+        <result column="posologie" property="posologie" />
+        <result column="unite_temps" property="unite_temps" />
+        <result column="quantite" property="quantite" />
+        <result column="nom" property="traitement.nom"/>
+        <association property="traitement" javaType="dz.ibnrochd.master14.model.Traitement">
+            <id column="id" property="id"/>
+            <result column="nom" property="nom"/>
+        </association>
+    </resultMap>
+    
+    <select id="AfficherTousLigneConsultation" resultMap="ResultMap">
+        SELECT lc.id, lc.posologie, lc.unite_temps, lc.quantite, t.id as id, t.nom
+        FROM cabinet.ligne_consultation lc
+        LEFT JOIN cabinet.traitement t ON lc.id = t.id
+    </select>
+    
+</mapper>
