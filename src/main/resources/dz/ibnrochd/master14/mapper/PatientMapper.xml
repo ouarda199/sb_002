@@ -9,21 +9,55 @@
         <result property="dateNaissance" column="date_naissance"/>
         <result property="numeroTelephone" column="numero_telephone"/>
         <result property="adresse" column="adresse"/>
+        <!--<collection property="consultation" ofType="dz.ibnrochd.master14.model.Consultation"
+            column="id" select="selectConsultationsDuPatient" />
+        <collection property="rendez_vous" ofType="dz.ibnrochd.master14.model.RendezVous"
+            column="id" select="selectConsultationsDuPatient" />-->
     </resultMap>
     
     <select id="afficherAllPatient" resultMap="ResultMap">
         SELECT * FROM cabinet.patient
     </select>
-    
+   
     <select id="findByNom" resultMap="ResultMap">
     	SELECT * FROM cabinet.patient WHERE nom = #{nom}
 	</select>
 	
-	<insert id="insertPatient" parameterType="dz.ibnrochd.master14.model.Patient" useGeneratedKeys="true" keyProperty="id">
+	<!-- <insert id="insertPatient" parameterType="dz.ibnrochd.master14.model.Patient" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO cabinet.patient (nom, prenom, sexe, date_naissance, numero_telephone, adresse) 
+        VALUES (#{nom}, #{prenom}, #{sexe}, #{dateNaissance}, #{numeroTelephone}, #{adresse})
+    </insert>-->
+    
+  
+	
+	<select id="lirePatient" resultMap="ResultMap">
+        SELECT * FROM cabinet.patient
+        WHERE id = #{id}
+    </select>
+	
+	
+	 <insert id="creerPatient" parameterType="dz.ibnrochd.master14.model.Patient" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO cabinet.patient (nom, prenom, sexe, date_naissance, numero_telephone, adresse) 
         VALUES (#{nom}, #{prenom}, #{sexe}, #{dateNaissance}, #{numeroTelephone}, #{adresse})
     </insert>
- 
+	
+	
+	<update id="miseajourpatient" parameterType="dz.ibnrochd.master14.model.Patient">
+	    UPDATE cabinet.patient
+		SET nom=#{nom}, prenom=#{prenom}, sexe=#{sexe}, date_naissance=#{dateNaissance}, numero_telephone=#{numeroTelephone}, adresse=#{adresse}
+	    WHERE id = #{id}
+    </update>
+	
     
+	
+
+	
+	<delete id="supprimerPatient" parameterType="java.lang.Integer">
+	    DELETE FROM cabinet.patient
+		WHERE id = #{id}
+    </delete>
+	
+	
+	
 </mapper>
 

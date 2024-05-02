@@ -7,16 +7,63 @@
         <result column="unite_temps" property="unite_temps" />
         <result column="quantite" property="quantite" />
         <result column="nom" property="traitement.nom"/>
+        <!--  <association property="traitement" column="id" javaType="dz.ibnrochd.master14.model.Traitement"
+            select="findTraitementById"/>-->
         <association property="traitement" javaType="dz.ibnrochd.master14.model.Traitement">
             <id column="id" property="id"/>
             <result column="nom" property="nom"/>
         </association>
     </resultMap>
     
+    
+
     <select id="AfficherTousLigneConsultation" resultMap="ResultMap">
         SELECT lc.id, lc.posologie, lc.unite_temps, lc.quantite, t.id as id, t.nom
         FROM cabinet.ligne_consultation lc
         LEFT JOIN cabinet.traitement t ON lc.id = t.id
     </select>
+   
+   
+	<select id="lireLigneConsultation" resultMap="ResultMap">
+        SELECT * FROM cabinet.ligne_consultation
+        WHERE id = #{id}
+    </select>
+	
+    <insert id="creerLigneConsultation" parameterType="dz.ibnrochd.master14.model.LigneConsultation" useGeneratedKeys="true" keyProperty="id">
+	    INSERT INTO cabinet.ligne_consultation(id_consultation, id_traitement, posologie, unite_temps, quantite)
+		VALUES (#{consultation.id}, #{traitement.id}, #{posologie}, #{unite_temps}, #{quantite});
+    </insert>
+    
+    
+    
+		
+	 <update id="miseajourligneconsultation" parameterType="dz.ibnrochd.master14.model.LigneConsultation" >
+	    UPDATE cabinet.ligne_consultation
+		SET id_consultation=#{consultation.id}, id_traitement=#{traitement.id}, posologie=#{posologie}, unite_temps=#{unite_temps}, quantite=#{quantite}
+   		WHERE id = #{id}
+     </update>
+		
+	
+	<delete id="supprimerligneconsultation" parameterType="java.lang.Integer">
+	    DELETE FROM cabinet.ligne_consultation
+		WHERE id = #{id}
+    </delete>
+    
+    <select id="consultationbyid"  resultMap="ResultMap" >
+		SELECT * FROM cabinet.ligne_consultation
+        WHERE id_consultation = #{cons_id}
+	</select>
+	  
+	  
+	  <select id="traitementbyid"  resultMap="ResultMap" >
+        WHERE   id_traitement= #{traitm_id}
+	</select>
+	
+	
+		
+		
+		
+		
+    
     
 </mapper>

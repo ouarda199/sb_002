@@ -4,10 +4,48 @@
     <resultMap id="ResultMap" type="dz.ibnrochd.master14.model.RendezVous" >
         <id column="id" property="id"  />
         <result column="dateRdv" property="date_rdv" />
+        <!--<association property="patient" column="id" javaType="dz.ibnrochd.master14.model.Patient"
+            select="findPatientById"/>-->
     </resultMap>
     
     <select id="AfficherAllRendezVous" resultMap="ResultMap">
         SELECT * FROM cabinet.rendez_vous
     </select>
+    
+    
+	
+	<select id="lireRendezVous" resultMap="ResultMap">
+        SELECT * FROM cabinet.rendez_vous
+        WHERE id = #{id}
+    </select>
+
+	
+	<insert id="creerRendezVous" parameterType="dz.ibnrochd.master14.model.RendezVous" useGeneratedKeys="true" keyProperty="id">
+	    INSERT INTO cabinet.rendez_vous(date_rdv, id_patient)
+		VALUES (#{dateRdv}, #{patient.id})
+    </insert>
+	
+
+	
+	<update id="miseajourpatientrendezvous" parameterType="dz.ibnrochd.master14.model.RendezVous">
+	    UPDATE cabinet.rendez_vous
+		SET date_rdv=#{dateRdv}, id_patient=#{patient.id}
+		WHERE id = #{id}
+    </update>
+	
+
+	<delete id="supprimerrendezvous" parameterType="java.lang.Integer">
+	    DELETE FROM cabinet.rendez_vous
+		WHERE id = #{id}
+    </delete>
+    
+    
+    <select id="PatientId" parameterType="java.lang.Integer">
+	    DELETE FROM cabinet.rendez_vous
+		WHERE id_patient = #{patient_id}
+    </select>
+    
+    
+    
     
 </mapper>

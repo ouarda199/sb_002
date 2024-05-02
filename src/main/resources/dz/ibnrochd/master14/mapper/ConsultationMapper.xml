@@ -5,11 +5,55 @@
         <id column="id" property="id"  />
         <result column="motif" property="motif"  />
         <result column="dateconsult" property="date_consultation" />
+        <result column="nom" property="traitement.nom"/>
+        <!--<collection property="ligne_consultation" ofType="dz.ibnrochd.master14.model.LigneConsultation"
+            column="id" select="selectLigneConsultations" />-->
     </resultMap>
 
     
     <select id="TrouverConsultationsParId" resultMap="ResultMap" parameterType="java.lang.Integer" >
         SELECT * FROM cabinet.consultation WHERE id = #{id}
     </select>
+    
+
+    <select id="lireConsultation" resultMap="ResultMap">
+        SELECT * FROM cabinet.consultation 
+        WHERE id = #{id}
+    </select>
+
+	
+ 
+    <insert id="creerConsultation" parameterType="dz.ibnrochd.master14.model.Consultation" useGeneratedKeys="true" keyProperty="id">
+	    INSERT INTO cabinet.consultation(motif, date_consultation, id_patient)
+		VALUES (#{motif}, #{dateconsult}, #{patient.id})
+    </insert>
+    
+    
+	
+	<update id="miseajourconsultation" parameterType="dz.ibnrochd.master14.model.Consultation" >
+	    UPDATE cabinet.consultation
+		SET motif=#{motif}, date_consultation=#{dateconsult}, id_patient=#{patient.id}
+		WHERE id = #{id}
+    </update>
+	
+	
+	<delete id="supprimerconsultation" parameterType="java.lang.Integer">
+	    DELETE FROM cabinet.consultation
+		WHERE id = #{id}
+    </delete>
+		
+		
+		
+	
+    
+    
+	
+    
+    
+    
+    
+    
+    
+    
     
 </mapper>

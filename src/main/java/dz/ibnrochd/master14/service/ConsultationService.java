@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import dz.ibnrochd.master14.mapper.ConsultationMapper;
 import dz.ibnrochd.master14.model.Consultation;
+import dz.ibnrochd.master14.model.Patient;
 
 @Service
 public class ConsultationService {
+
 
 	private final ConsultationMapper consultationMapper;
 
@@ -39,4 +41,38 @@ public class ConsultationService {
             }
         }
     }
+	
+	
+	public void insererConsultation(Consultation consultation) {
+    	consultationMapper.creerConsultation(consultation);
+    	 System.out.println("L'ajout avec sucess pour la consultation");
+    	
+    }
+	
+	  public Consultation lirelesConsultations(int id) {
+		  return consultationMapper.lireConsultation(id);
+	    	 
+	    	
+	    }
+	
+	  
+	  public void miseajourdesConsultations(Consultation consultation) {
+		  consultationMapper.miseajourconsultation(consultation);
+		  System.out.println("La mise a jour des consultations");
+	    	 
+	    	
+	    }
+	 
+	  public void supprimerlesconsultations(int id ) {
+		  consultationMapper.supprimerconsultation(id);
+	    	
+	    	 System.out.println("Supprimer des consultations");
+	    
+	    
+	    	 
+	    }
+		public List<Consultation> getPatientId(int patient_id) {
+	        return consultationMapper.PatientId(patient_id);
+	    }
+	
 }

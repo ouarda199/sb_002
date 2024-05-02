@@ -9,7 +9,7 @@ public class LigneConsultation implements Serializable {
 	private static final long serialVersionUID = -1882485395538957648L;
 	
 	private int id;
-	Consultation consultation;
+	
 	Traitement traitement;
 	
 	private String posologie;
@@ -18,6 +18,12 @@ public class LigneConsultation implements Serializable {
 	
 	public LigneConsultation() {		
 	}
+	
+	private Consultation consultation;
+
+    public void setConsultation(Consultation consultation) {
+        this.consultation = consultation;
+    }
 
 	public LigneConsultation(int id, String posologie, String unite_temps, String quantite, 
 			Consultation consultation, Traitement traitement) {
