@@ -37,7 +37,7 @@ public class TraitementService {
 	
 	
 	public void miseajourdestraitements(Traitement  traitement) {
-		traitementMapper.miseajourtraitemnt(traitement);
+		traitementMapper.miseajourtraitemntt(traitement);
 		  System.out.println("La mise a jour des traitements");
 	    	 
 	    	

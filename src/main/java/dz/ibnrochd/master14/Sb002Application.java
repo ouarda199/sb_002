@@ -349,7 +349,7 @@ public class Sb002Application implements CommandLineRunner {
 	   
 	    */
 //--------------------------Traitement--------------------------------------------
-	   // La création
+  // La création
 	 Traitement traitementt = new Traitement();
 	 traitementt.setNom("xydole");  
 	 traitementService.insererTraitement(traitementt);  
@@ -364,9 +364,9 @@ public class Sb002Application implements CommandLineRunner {
 	 	 System.out.println("Y'a pas de traitement trouvé a affiché");
 	   } 
 	   
-	 /*  
-	 // Update
-	   Traitement traitementUp = traitementService.lirelesTraitements(100);
+	 
+	// Update
+	   Traitement traitementUp = traitementService.lirelesTraitements(10);
 	   if(traitementUp != null) { 
 		   traitementUp.setNom("Xydole1");  
 		   traitementService.miseajourdestraitements(traitementUp); 
@@ -376,10 +376,9 @@ public class Sb002Application implements CommandLineRunner {
 	   }  
 	   
 	}
-	  */
+	  
 
 
 }
 
-}
 

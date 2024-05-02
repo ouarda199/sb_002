@@ -8,7 +8,7 @@ import dz.ibnrochd.master14.model.Traitement;
 public interface TraitementMapper {
 	void creertraitement(Traitement traitement);
 	Traitement lireTraitement( int id);
-	void miseajourtraitemnt(Traitement traitement);
+	void miseajourtraitemntt(Traitement traitement);
 	void supprimertraitement(int id);
 
 }
